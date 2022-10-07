@@ -26,6 +26,7 @@ class Product(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    image = models.ImageField(upload_to='uploads/product_images/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Товар'
