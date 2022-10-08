@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Корзина {% endblock %}
+
+
+{% block content %}
+    <h1 class='text-2xl'>Корзина</h1>
+
+    {% for item in cart %}
+        <p class="mb-2">
+           <b>Название: </b> {{ item.product.title }}<br>
+           <b>Количество: </b>{{ item.quantity }}<br>
+           <a href="{% url 'change_quantity' item.product.id %}?action=increase">Добавить +</a>
+           <a href="{% url 'change_quantity' item.product.id %}?action=decrease">Убрать -</a>
+
+           <a href="{% url 'remove_from_cart' item.product.id %}">Удалить из корзины</a>
+
+        </p>
+
+    {% endfor %}
+
+    <strong>Цена за все: </strong>{{ cart.get_total_cost }}
+
+{% endblock %}
