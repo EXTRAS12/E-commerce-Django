@@ -1,3 +1,4 @@
+from email.policy import default
 from tabnanny import verbose
 from django.contrib.auth.models import User
 from django.db import models
@@ -16,8 +17,20 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    user = models.ForeignKey(User, related_name='products',
-                             on_delete=models.CASCADE, verbose_name='Пользователь')
+    DRAFT = 'Черновик'
+    WAITING_APPROVAL = 'Ожидает подтверждения'
+    ACTIVE = 'Активный'
+    DELETED = 'Удалён'
+
+    STATUS_CHOICES = (
+        (DRAFT, 'Черновик'),
+        (WAITING_APPROVAL, 'Ожидает подтверждения'),
+        (ACTIVE, 'Активный'),
+        (DELETED, 'Удалён'),
+    )
+
+    user = models.ForeignKey(
+        User, related_name='products', on_delete=models.CASCADE, verbose_name='Пользователь')
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE, verbose_name='Категория')
     title = models.CharField(max_length=50, verbose_name='Название')
@@ -27,6 +40,8 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='uploads/product_images/', blank=True, null=True)
+    status = models.CharField(
+        max_length=50, verbose_name='Статус', choices=STATUS_CHOICES, default=ACTIVE)
 
     class Meta:
         verbose_name = 'Товар'
