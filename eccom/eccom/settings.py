@@ -44,6 +44,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'eccom.urls'
 
+WEBSITE_URL = 'http://127.0.0.1:8000/'
+
+STRIPE_PUB_KEY = 'pk_test_51KroDQD1fEL69NmQs0gnzS09TyBKLcVnqnBQEIZ01TCEBG7lwZpeOZ6PEBRx7jrjnGSuAL03qUBeTrCg1naBLL4J000WJQvn0q'
+STRIPE_SECRET_KEY = 'sk_test_51KroDQD1fEL69NmQaVWJZx5hgQ613ScZluDfxU8floDuVBPVXHEYSlfUEDAHXZo5fedXtqdAs1UOLEHkNnTz06Ln00kgQeK5aI'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
