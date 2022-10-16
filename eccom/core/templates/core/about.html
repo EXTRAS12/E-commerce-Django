@@ -1,5 +1,14 @@
 {% extends 'core/base.html' %}
 
 {% block title %} About {% endblock %}
+{% block meta %}
+<meta name="description" content="bla bla ">
+<meta name="author" content="EXTRA">
+<meta property="og:title" content="Shop | About">
+<meta property="og:description" content="bla bla bla">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://127.0.0.1:8000/about/">
+
+{% endblock %}
 
 {% block content %} <h1>About</h1> {% endblock %}
